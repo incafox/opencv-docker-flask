@@ -5,19 +5,19 @@ import base64
 from matplotlib import pyplot as plt
 from flask import Flask, escape, request, jsonify
 
-image = cv2.imread("4.jpg", cv2.IMREAD_COLOR)
+#image = cv2.imread("4.jpg", cv2.IMREAD_COLOR)
 
-bilateral = cv2.bilateralFilter(image, 35, 75, 75)
+#bilateral = cv2.bilateralFilter(image, 35, 75, 75)
 
-cv2.imshow("original", image)
-cv2.imshow("last", bilateral)
+#cv2.imshow("original", image)
+#cv2.imshow("last", bilateral)
 
-retval, buffer = cv2.imencode('.jpg', bilateral)
-jpg_as_text = base64.b64encode(buffer)
-print(jpg_as_text[:100])
-print(str(jpg_as_text[:100]))
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+#retval, buffer = cv2.imencode('.jpg', bilateral)
+#jpg_as_text = base64.b64encode(buffer)
+#print(jpg_as_text[:100])
+#print(str(jpg_as_text[:100]))
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
 
 app = Flask(__name__)
 
@@ -61,7 +61,7 @@ def upload():
     string = value['img']
     string = string.replace('data:image/jpeg;base64', '')
     string = string.replace('data:image/png;base64', '')
-    print(value)
+    #print(value)
     jpg_original = base64.b64decode(string)
     jpg_as_np = np.frombuffer(jpg_original, dtype=np.uint8)
     img = cv2.imdecode(jpg_as_np, flags=1)
